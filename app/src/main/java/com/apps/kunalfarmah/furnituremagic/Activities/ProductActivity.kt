@@ -1,4 +1,4 @@
-package com.apps.kunalfarmah.furnituremagic
+package com.apps.kunalfarmah.furnituremagic.Activities
 
 import android.Manifest
 import android.app.Activity
@@ -19,6 +19,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.FileProvider
+import com.apps.kunalfarmah.furnituremagic.R
 import com.apps.kunalfarmah.furnituremagic.Room.Furniture
 import com.apps.kunalfarmah.furnituremagic.ViewModels.FurnitureViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog

@@ -1,4 +1,4 @@
-package com.apps.kunalfarmah.furnituremagic
+package com.apps.kunalfarmah.furnituremagic.Activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.apps.kunalfarmah.furnituremagic.Adapters.FurnitureAdapter
+import com.apps.kunalfarmah.furnituremagic.R
 import com.apps.kunalfarmah.furnituremagic.Room.Furniture
 import com.apps.kunalfarmah.furnituremagic.ViewModels.FurnitureViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -1,4 +1,4 @@
-package com.apps.kunalfarmah.furnituremagic
+package com.apps.kunalfarmah.furnituremagic.Activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,6 +14,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.apps.kunalfarmah.furnituremagic.R
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
@@ -63,16 +64,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
-                // This callback is invoked in an invalid request for verification is made,
-                // for instance if the the phone number format is not valid.
                 Log.w(TAG, "onVerificationFailed", e)
 
                 if (e is FirebaseAuthInvalidCredentialsException) {
-                    // Invalid request
-                    // ...
+                    Log.w(TAG, "onVerificationFailed", e)
                 } else if (e is FirebaseTooManyRequestsException) {
-                    // The SMS quota for the project has been exceeded
-                    // ...
+                    Log.w(TAG, "onVerificationFailed", e)
                 }
 
             }
@@ -134,8 +131,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         })
-
-
     }
 
     override fun onClick(p0: View?) {
@@ -182,9 +177,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         auth!!.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
-
                     user = task.result?.user
                     Toast.makeText(
                         this@MainActivity, "Welcome " + user!!.phoneNumber.toString(),
@@ -192,9 +185,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     ).show()
                     finish()
                     startActivity(Intent(this@MainActivity, ProductActivity::class.java))
-                    // ...
                 } else {
-                    // Sign in failed, display a message and update the UI
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
                         // The verification code entered was invalid
@@ -208,7 +199,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth!!.currentUser
-
         if (currentUser != null) {
             Toast.makeText(
                 this,
@@ -223,13 +213,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun verifyPhoneNumberWithCode(verificationId: String?, code: String) {
-        // [START verify_with_code]
         val credential = PhoneAuthProvider.getCredential(verificationId!!, code)
-        // [END verify_with_code]
         signInWithPhoneAuthCredential(credential)
     }
 
-    // [START resend_verification]
     private fun resendVerificationCode(
         phoneNumber: String,
         token: PhoneAuthProvider.ForceResendingToken?
@@ -241,6 +228,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             this, // Activity (for callback binding)
             callbacks, // OnVerificationStateChangedCallbacks
             token
-        ) // ForceResendingToken from callbacks
+        )
     }
 }
