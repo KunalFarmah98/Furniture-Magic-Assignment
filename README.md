@@ -18,6 +18,7 @@
 ### User can only delete the offers added by him with a confimation Dialog.
 ### Added option to skip adding a new offer from database.
 ### Handled complete navigation with effective back button presses and home button in action bar.
+### Explicitly handled input types for all edit texts.
 <p> <img hspace="10" src="https://github.com/KunalFarmah98/Furniture-Magic-Assignment/blob/main/app/src/main/res/raw/signin1.jpeg" width =200 
   height = 350/>
  <img hspace="10" src="https://github.com/KunalFarmah98/Furniture-Magic-Assignment/blob/main/app/src/main/res/raw/signin2.jpeg" width =200 
