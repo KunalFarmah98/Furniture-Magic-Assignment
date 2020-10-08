@@ -26,19 +26,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     var otp: EditText? = null
     var get_otp: Button? = null
     var submit: Button? = null
-    var resend:Button? = null
+    var resend: Button? = null
     lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     var TAG = "SIGN_IN"
     var auth: FirebaseAuth? = null
     var storedVerificationId: String? = null
     var resendToken: PhoneAuthProvider.ForceResendingToken? = null
-    var mTextField:TextView?=null
+    var mTextField: TextView? = null
     lateinit var code: String
+    var user: FirebaseUser? = null
 
-
-    object Statified {
-        var user: FirebaseUser? = null
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +59,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-               // we want to login with OTP so nothing happens on auto verification
+                // we want to login with OTP so nothing happens on auto verification
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
@@ -93,7 +90,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 storedVerificationId = verificationId
                 resendToken = token
 
-                phone!!.visibility= GONE
+                phone!!.visibility = GONE
                 get_otp!!.visibility = GONE
 
                 otp!!.visibility = VISIBLE
@@ -101,6 +98,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
                 resend!!.visibility = VISIBLE
                 resend!!.alpha = 0.1f
+
+                mTextField!!.visibility = VISIBLE
 
                 object : CountDownTimer(60000, 1000) {
                     override fun onTick(millisUntilFinished: Long) {
@@ -120,13 +119,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             override fun afterTextChanged(s: Editable) {}
 
-            override fun beforeTextChanged(s: CharSequence, start: Int,
-                                           count: Int, after: Int) {
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) {
             }
 
-            override fun onTextChanged(s: CharSequence, start: Int,
-                                       before: Int, count: Int) {
-                if(s.toString().length==10){
+            override fun onTextChanged(
+                s: CharSequence, start: Int,
+                before: Int, count: Int
+            ) {
+                if (s.toString().length == 10) {
                     get_otp!!.alpha = 1f
                 }
             }
@@ -144,7 +147,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     Toast.makeText(this, "Phone Number Invalid", Toast.LENGTH_SHORT).show()
                     return
                 }
-                text = "+91"+text
+                text = "+91" + text
                 PhoneAuthProvider.getInstance().verifyPhoneNumber(
                     text, // Phone number to verify
                     60, // Timeout duration
@@ -159,8 +162,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 verifyPhoneNumberWithCode(storedVerificationId, code)
             }
 
-            R.id.resend->{
-                resendVerificationCode(phone!!.text.toString(), resendToken)
+            R.id.resend -> {
+                resendVerificationCode("+91" + phone!!.text.toString(), resendToken)
             }
         }
     }
@@ -182,7 +185,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
 
-                    Statified.user = task.result?.user
+                    user = task.result?.user
+                    Toast.makeText(
+                        this@MainActivity, "Welcome " + user!!.phoneNumber.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
                     finish()
                     startActivity(Intent(this@MainActivity, ProductActivity::class.java))
                     // ...
@@ -202,10 +209,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth!!.currentUser
 
-        if(currentUser!=null){
-            Toast.makeText(this,"Welcome "+currentUser!!.phoneNumber.toString(),Toast.LENGTH_SHORT).show()
+        if (currentUser != null) {
+            Toast.makeText(
+                this,
+                "Welcome " + currentUser!!.phoneNumber.toString(),
+                Toast.LENGTH_SHORT
+            ).show()
             finish()
-            startActivity(Intent(this@MainActivity,ProductsListActivity::class.java))
+            startActivity(Intent(this@MainActivity, ProductsListActivity::class.java))
         }
 
 

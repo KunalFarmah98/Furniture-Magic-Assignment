@@ -6,23 +6,27 @@
     <string name="enter_your_mobile_number">Enter Your Mobile Number</string>
     <string name="sign_in">Sign In</string>
     <string name="resend_otp">RESEND OTP</string>
-    <string name="name">Name</string>
+    <string name="name">Product Name</string>
     <string name="price">Price</string>
     <string name="discounted_price_leave_empty_if_not_applicable">Discounted Price (Leave Empty if not applicable)</string>
     <string name="save">SAVE</string>
     <string name="back">BACK</string>
-
-        <string name="selected_item">Select a Type:</string>
+    <string name="selected_item">Select a Type:</string>
     <string name="click_an_image_from_camera">Take an Image from Camera</string>
     <string name="select_an_image_from_gallery">Select an Image from Gallery</string>
     <string name="New_Offer">New Offer</string>
+    <string name="type">Type</string>
+    <string name="all_offers">All Offers</string>
+    <string name="rs">Rs. </string>
+    <string name="nothing_here">No Offers Added Yet.\nUse the + Button to Add New Offers</string>
+    <string name="can_not_Delete">You Can\'t Delete this offer as you did not Create it!</string>
 
     <string-array name="furniture">
             <item>Type</item>
-            <item>Table</item>
-            <item>Chair</item>
-            <item>Desk</item>
-            <item>Couch</item>
-            <item>Cabinet</item>
+            <item>Tables</item>
+            <item>Chairs</item>
+            <item>Desks</item>
+            <item>Couches</item>
+            <item>Cabinets</item>
         </string-array>
 </resources>
