@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "776886318201-iocddlmursepm59v3gskrq2pvrjt7npn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.apps.kunalfarmah.furnituremagic",
+            "certificate_hash": "ce21f505548452e2c285d1c5c2dc0b6e9afbbee5"
+          }
+        },
+        {
           "client_id": "776886318201-oj23j564qctvourdoguq4nuj37c14lr7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -41,6 +41,7 @@
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:ellipsize="marquee"
                 android:maxLines="3"
                 android:text="@string/name"
